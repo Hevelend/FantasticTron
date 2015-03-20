@@ -68,7 +68,7 @@ public class JeuPanel extends JPanel {
 	}
 	public void setOver() {
 		JLabel lblOver = new JLabel();
-		lblOver.setIcon (new ImageIcon ("images\\image.png"));
+		lblOver.setIcon (new ImageIcon ("images\\gameover.png"));
 		this.add(lblOver);
 
 
