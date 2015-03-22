@@ -3,16 +3,20 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import model.*;
 
-public class FenetrePlateau extends JFrame {
+public class FenetrePlateau extends JFrame implements KeyListener{
 	private static final long serialVersionUID = 1L;
 	private Joueur humain;
-
+	private JButton start;
 
 	public FenetrePlateau(Joueur humain) {
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
 		System.out.println("Création de la fenêtre principale");
 		this.humain = humain;
 		setTitle("Tron Game");
@@ -57,6 +61,25 @@ public class FenetrePlateau extends JFrame {
 
 		@Override
 		public void keyReleased(KeyEvent e) { }		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			start.doClick();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
+	
+	// Le listener pour la touche entrée active le boutton COMMENCER
+	public void setStartBut(JButton jb) {
+		start = jb;
 	}
 
 }

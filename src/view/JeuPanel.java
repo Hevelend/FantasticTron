@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import controller.Partie;
 import controller.ThreadJoueur;
 import model.Joueur;
 
@@ -24,8 +26,11 @@ public class JeuPanel extends JPanel {
 	public static final int TAILLE_CASE = 4;
 	private Image bg;
 
-	public JeuPanel() {
+	private Partie p;
+	
+	public JeuPanel(Partie p) {
 
+		this.p = p;
 		try {
 			bg = ImageIO.read(new File("images/bg.png"));
 		} catch (IOException e1) {
@@ -50,7 +55,10 @@ public class JeuPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		g2.drawImage(bg, 0, 0, this);
-
+		g2.setFont(new Font("TimesRoman", Font.PLAIN, 150));
+		g2.setColor(Color.WHITE);
+		g2.drawString(p.txtRebours, 340, 280);
+		
 		// Dessine un rectangle pour chaque case de la grille
 		for(int x=0; x < ThreadJoueur.grille.getLargeur(); x++) {
 			for(int y=0; y < ThreadJoueur.grille.getHauteur(); y++) {
@@ -68,7 +76,7 @@ public class JeuPanel extends JPanel {
 	}
 	public void setOver() {
 		JLabel lblOver = new JLabel();
-		lblOver.setIcon (new ImageIcon ("images\\gameover.png"));
+		lblOver.setIcon (new ImageIcon ("images/gameover.png"));
 		this.add(lblOver);
 
 

@@ -6,7 +6,6 @@ public class Main {
 
 		Partie P = new Partie();
 		P.start();
-
 	}
 
 }

@@ -3,6 +3,7 @@ package controller;
 import java.awt.BorderLayout;
 
 import model.Joueur;
+import view.FenetreAccueil;
 import view.FenetrePlateau;
 import view.HeaderPanel;
 import view.JeuPanel;
@@ -13,20 +14,24 @@ public class Partie extends Thread {
 	private Joueur[] tabJou;
 	private HeaderPanel hPan;
 	private JeuPanel jPan;
-	Joueur humain;
+	private Joueur humain;
 	boolean GameOver;
+	
+	public String txtRebours = "";
+	public ThreadMusic zik1, zik2;
 
 	public Partie() {
+		
 		GameOver = false;
 		tabThreadJou = new ThreadJoueur[4];
-		tabJou = new Joueur[4];
-
+		tabJou = new Joueur[4];		
+		
 		// Crée les Joueurs( nom, position, vitesse)
-		humain = new Joueur("Younès", 0, 20);
+		humain = new Joueur("Lewis", 0, 20);
 		tabJou[0] = humain;
-		tabJou[1] = new Joueur("Ordi 1", 1, 20);
-		tabJou[2] = new Joueur("Ordi 2", 2, 20);
-		tabJou[3] = new Joueur("Ordi 3", 3, 20);
+		tabJou[1] = new Joueur("L'idiot du village", 1, 20);
+		tabJou[2] = new Joueur("Rival", 2, 20);
+		tabJou[3] = new Joueur("Le professionnel", 3, 20);
 
 		// crée les Threads de contrôle
 		tabThreadJou[0] = new ThreadHumain(humain);
@@ -34,19 +39,31 @@ public class Partie extends Thread {
 		tabThreadJou[2] = new ThreadIA(humain, tabJou[2]);
 		tabThreadJou[3] = new ThreadIA(humain, tabJou[3]);
 
+
+		
 		// Création de l'interface
 		FenetrePlateau fenetrePlateau = new FenetrePlateau(humain);
-		hPan = new HeaderPanel(tabJou, tabThreadJou);
-		jPan = new JeuPanel();
+		hPan = new HeaderPanel(this, fenetrePlateau, tabJou, tabThreadJou);
+		jPan = new JeuPanel(this);
 
 		fenetrePlateau.getContentPane().add(hPan, BorderLayout.NORTH);
 		fenetrePlateau.getContentPane().add(jPan, BorderLayout.CENTER);
-		fenetrePlateau.setVisible(true);
+		
+		// crée les threads de musique
+		zik1 = new ThreadMusic("sounds/music1.mp3", true);
+		zik2 = new ThreadMusic("sounds/music2.mp3", true);
+		
+		// fenetre d'accueil
+		new FenetreAccueil(fenetrePlateau, zik2);
+		// demarage thread et mise en attente
+		
+		zik1.start();
 	}
 
 	@Override
 	public void run() {
 		try {
+			
 			int vivant;
 
 			while (!GameOver) {

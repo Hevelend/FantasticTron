@@ -15,7 +15,7 @@ public class ThreadHumain extends ThreadJoueur {
 			jou.avance();
 			if (grille.setPos(jou) == false) {
 				// Fin de partie (l'humain s'est crashé)
-				System.out.println("T'es mort bouffon !!!!");
+				System.out.println("GAME OVEEEEEEEEEEER #loose");
 				jou.setDead(true);
 			}
 			try {
