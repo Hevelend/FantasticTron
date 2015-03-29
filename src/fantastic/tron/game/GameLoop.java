@@ -96,7 +96,10 @@ public class GameLoop extends Thread {
 					}
 
 					// Vérification si la partie est terminée
-					if (playersTab[1].getScoring() >= 5 || playersTab[0].getScoring() >= 5) {
+					if (playersTab[0].getScoring() >= 3 ||
+						playersTab[1].getScoring() >= 3 ||
+						playersTab[2].getScoring() >= 3 ||
+						playersTab[3].getScoring() >= 3) {
 						gameScreen.setOver();
 						GameOver = true;
 					}

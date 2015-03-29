@@ -48,13 +48,13 @@ public class Header extends JPanel {
 		labelPlayer.setForeground(_playersTab[0].getColor());
 		add(labelPlayer);
 		labelIA1 = new JLabel("   Hard IA : " + 0);
-		labelIA1.setForeground(_playersTab[1].getColor());
+		labelIA1.setForeground(_playersTab[3].getColor());
 		add(labelIA1);
 		labelIA2 = new JLabel("   Medium IA : " + 0);
-		labelIA2.setForeground(_playersTab[2].getColor());
+		labelIA2.setForeground(_playersTab[1].getColor());
 		add(labelIA2);
 		labelIA3 = new JLabel("   Easy IA : " + 0);
-		labelIA3.setForeground(_playersTab[3].getColor());
+		labelIA3.setForeground(_playersTab[2].getColor());
 		add(labelIA3);
 	}
 
