@@ -73,12 +73,14 @@ public class GameScreen extends JPanel {
 	}
 	
 	// Affichage du Game Over
-	public void setOver() {
+	public void setOver(Player[] playersTab) {
 		JLabel labelGameOver = new JLabel();
-		labelGameOver.setIcon (new ImageIcon ("images/gameover.png"));
+		if(playersTab[0].getScoring() == 3) {
+			labelGameOver.setIcon (new ImageIcon ("images/you_win.png"));
+		} else {
+			labelGameOver.setIcon (new ImageIcon ("images/gameover.png"));
+		}
 		this.add(labelGameOver);
-
-
 	}
 
 }

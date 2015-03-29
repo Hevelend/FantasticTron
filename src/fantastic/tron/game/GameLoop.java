@@ -72,10 +72,11 @@ public class GameLoop extends Thread {
 					}
 				}
 				
-				// Fin de manche
+				// Fin de la manche
 				if ((iaAlive == 1 && human.isDead()) || iaAlive == 0) {
 					if (iaAlive == 0) {
-						playersTab[0].setScoring(); // +1 pour le joueur
+						// MAJ du score du joueur
+						playersTab[0].setScoring();
 					} else {
 						// MAJ du score de l'IA gagnante
 						for (int i = 1; i < playersTab.length; i++) {
@@ -100,7 +101,7 @@ public class GameLoop extends Thread {
 						playersTab[1].getScoring() >= 3 ||
 						playersTab[2].getScoring() >= 3 ||
 						playersTab[3].getScoring() >= 3) {
-						gameScreen.setOver();
+						gameScreen.setOver(playersTab);
 						GameOver = true;
 					}
 					else {

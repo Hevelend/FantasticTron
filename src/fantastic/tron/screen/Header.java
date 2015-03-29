@@ -66,9 +66,9 @@ public class Header extends JPanel {
 		if(!playersTab[0].isDead()) {
 			labelPlayer.setText("   Player :  "+ playersTab[0].getScoring());
 		} else {
-			labelIA1.setText("   Hard IA : " + playersTab[1].getScoring());
-			labelIA2.setText("   Medium IA : " + playersTab[2].getScoring());
-			labelIA3.setText("   Easy IA : " + playersTab[3].getScoring());
+			labelIA1.setText("   Hard IA : " + playersTab[3].getScoring());
+			labelIA2.setText("   Medium IA : " + playersTab[1].getScoring());
+			labelIA3.setText("   Easy IA : " + playersTab[2].getScoring());
 		}
 
 	}
