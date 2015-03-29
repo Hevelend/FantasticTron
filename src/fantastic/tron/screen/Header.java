@@ -18,8 +18,10 @@ public class Header extends JPanel {
 	private JButton startingButton; // Bouton commencer
 	private PlayerStateManager[] threadsTab; // Tableau des threads
 	private Player[] playersTab; // Tableau des joueurs
-	private JLabel labelPlayer;
-	private JLabel labelIA;
+	private JLabel labelPlayer; // Label score joueur
+	private JLabel labelIA1; // Label score Hard IA
+	private JLabel labelIA2; // Label score Medium IA
+	private JLabel labelIA3; // Label score Easy IA
 	private GameWindow mainWindow;
 	private GameLoop game;
 
@@ -28,7 +30,9 @@ public class Header extends JPanel {
 		this.threadsTab = _threadsTab;
 		this.playersTab = _playersTab;
 		labelPlayer = new JLabel(); 
-		labelIA = new JLabel(); 
+		labelIA1 = new JLabel(); 
+		labelIA2 = new JLabel(); 
+		labelIA3 = new JLabel(); 
 
 		setBackground(Color.DARK_GRAY);
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -40,13 +44,18 @@ public class Header extends JPanel {
 		this.mainWindow = _mainWindow;
 		this.mainWindow.setStartBut(startingButton);
 
-		labelPlayer = new JLabel("   Player : "+ 0);
+		labelPlayer = new JLabel("   Player : " + 0);
 		labelPlayer.setForeground(_playersTab[0].getColor());
 		add(labelPlayer);
-
-		labelIA = new JLabel("   IA : "+ 0);
-		labelIA.setForeground(_playersTab[1].getColor());
-		add(labelIA);
+		labelIA1 = new JLabel("   Hard IA : " + 0);
+		labelIA1.setForeground(_playersTab[1].getColor());
+		add(labelIA1);
+		labelIA2 = new JLabel("   Medium IA : " + 0);
+		labelIA2.setForeground(_playersTab[2].getColor());
+		add(labelIA2);
+		labelIA3 = new JLabel("   Easy IA : " + 0);
+		labelIA3.setForeground(_playersTab[3].getColor());
+		add(labelIA3);
 	}
 
 	public void buttonActivation() {
@@ -57,7 +66,9 @@ public class Header extends JPanel {
 		if(!playersTab[0].isDead()) {
 			labelPlayer.setText("   Player :  "+ playersTab[0].getScoring());
 		} else {
-			labelIA.setText("   AI : " + playersTab[1].getScoring());
+			labelIA1.setText("   Hard IA : " + playersTab[1].getScoring());
+			labelIA2.setText("   Medium IA : " + playersTab[2].getScoring());
+			labelIA3.setText("   Easy IA : " + playersTab[3].getScoring());
 		}
 
 	}

@@ -67,16 +67,22 @@ public class GameLoop extends Thread {
 			while (!GameOver) {
 				iaAlive = 3;
 				for (int i = 1; i < playersTab.length; i++) {
-					if (playersTab[i].isDead())
+					if (playersTab[i].isDead()) {
 						iaAlive --;
+					}
 				}
 				
 				// Fin de manche
-				if (iaAlive == 0 || human.isDead()) {
+				if ((iaAlive == 1 && human.isDead()) || iaAlive == 0) {
 					if (iaAlive == 0) {
 						playersTab[0].setScoring(); // +1 pour le joueur
 					} else {
-						playersTab[1].setScoring(); // +1 pour les ia
+						// MAJ du score de l'IA gagnante
+						for (int i = 1; i < playersTab.length; i++) {
+							if (!playersTab[i].isDead()) {
+								playersTab[i].setScoring();
+							}
+						}
 					}
 					head.scoringRefresh();
 					
